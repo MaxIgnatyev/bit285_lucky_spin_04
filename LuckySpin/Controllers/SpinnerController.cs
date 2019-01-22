@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using LuckySpin.Models;
 
+
 namespace LuckySpin.Controllers
 {
     public class SpinnerController : Controller
@@ -20,9 +21,11 @@ namespace LuckySpin.Controllers
         }
 
         [HttpPost]
-        public IActionResult Index(int num)
+        public IActionResult Index(Player player)
         {
-            return RedirectToAction("SpinIt", new { luck = 3 });
+            Spin spin = new Spin();
+            spin.Luck = player.Lucky;
+            return RedirectToAction("SpinIt", spin);
         }
 
         /***
